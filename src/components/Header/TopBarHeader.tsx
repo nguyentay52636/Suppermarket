@@ -1,10 +1,10 @@
 import React from 'react'
 import { Phone, MapPin } from 'lucide-react'
-import Link from 'next/link'    
+import Link from 'next/link'
 
 export default function TopBarHeader() {
     return (
-        <div className="bg-primary text-primary-foreground py-2 hidden md:block">
+        <div className="bg-primary text-white hover:text-white py-2 hidden md:block">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center space-x-6">

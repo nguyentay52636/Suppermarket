@@ -3,11 +3,7 @@
 import { useState } from "react"
 import {
     Search,
-    ShoppingCart,
-    User,
     Phone,
-    MapPin,
-    Menu,
     Home,
     Package,
     Newspaper,
@@ -16,9 +12,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import TopBarHeader from "./TopBarHeader"
 import SearchAndFilter from "./SearchAndFilter"
 
@@ -53,15 +47,15 @@ export default function Header() {
                             </Link>
 
                             {/* Navigation Menu - Hidden on mobile */}
-                            <nav className="hidden lg:flex items-center space-x-8">
+                            <nav className="hidden lg:flex items-center space-x-8 rounded-md">
                                 {navigationItems.map((item) => (
                                     <Link key={item.href} href={item.href}>
                                         <Button
                                             variant="ghost"
                                             className={
                                                 item.active
-                                                    ? "text-white bg-orange-500 hover:bg-orange-600"
-                                                    : "text-foreground hover:text-primary"
+                                                    ? "text-white bg-orange-500 hover:bg-orange-600 rounded-xl cursor-pointer px-6 py-2"
+                                                    : "text-black hover:text-white rounded-xl cursor-pointer px-6 py-2 hover:text-white hover:bg-orange-500 "
                                             }
                                         >
                                             {item.label}
