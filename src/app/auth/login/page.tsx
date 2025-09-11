@@ -68,6 +68,12 @@ export default function Page() {
                         rememberMe={rememberMe}
                         setRememberMe={setRememberMe}
                     />
+                    <div className="text-center mt-6">
+                        <span className="text-muted-foreground">Chưa có tài khoản? </span>
+                        <Link href="/auth/register" className="text-primary hover:text-primary/80 font-medium">
+                            Đăng ký ngay
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

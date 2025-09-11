@@ -18,11 +18,11 @@ export default function TopBarHeader() {
                         </div>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <Link href="/login" className="hover:text-primary/80">
+                        <Link href="/auth/login" className="hover:text-primary/80">
                             <span>Đăng nhập</span>
                         </Link>
                         <span className="text-primary-foreground/60">/</span>
-                        <Link href="/register" className="hover:text-primary/80">
+                        <Link href="/auth/register" className="hover:text-primary/80">
                             <span>Đăng ký</span>
                         </Link>
                     </div>

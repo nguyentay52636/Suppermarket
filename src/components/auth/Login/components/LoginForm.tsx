@@ -150,12 +150,8 @@ export default function LoginForm({ handleSubmit, email, setEmail, password, set
                 </div>
 
                 {/* Register Link */}
-                <div className="text-center mt-6">
-                    <span className="text-muted-foreground">Chưa có tài khoản? </span>
-                    <Link href="/register" className="text-primary hover:text-primary/80 font-medium">
-                        Đăng ký ngay
-                    </Link>
-                </div>
+           
+
             </div>
         </>
     )
