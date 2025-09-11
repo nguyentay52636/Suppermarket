@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Supermarket",
@@ -16,9 +17,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ClientLayout>
-          {children}
-        </ClientLayout>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange >
+          <ClientLayout>
+            {children}
+          </ClientLayout>
+        </ThemeProvider>
+
       </body>
     </html>
   );
