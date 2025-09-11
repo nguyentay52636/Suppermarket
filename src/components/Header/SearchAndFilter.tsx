@@ -28,24 +28,14 @@ export default function SearchAndFilter({ navigationItems }: SearchAndFilterProp
 
             {/* User Actions */}
             <div className="flex items-center space-x-1 md:space-x-2">
-                <Button variant="ghost" size="icon" className="text-foreground hover:text-primary hidden md:flex">
-                    <User className="h-5 w-5" />
-                </Button>
+
                 <Link href="/cart">
-                    <Button variant="ghost" size="icon" className="text-foreground hover:text-primary relative">
-                        <ShoppingCart className="h-5 w-5" />
-                        {/* {state.itemCount > 0 && (
-                    <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center bg-primary text-primary-foreground text-xs">
-                        {state.itemCount}
-                    </Badge>
-                )} */}
+                    <Button variant="ghost" className="text-white hover:text-white hover:bg-orange-600 relative cursor-pointer bg-orange-500 rounded-xl px-6! py-6!">
+                        <ShoppingCart className="h-10 w-10" />
+
                     </Button>
                 </Link>
-                <Link href="/cart" className="hidden md:block">
-                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                        {/* Giỏ hàng ({state.itemCount}) */}
-                    </Button>
-                </Link>
+
             </div>
 
             {/* Mobile Menu Button */}

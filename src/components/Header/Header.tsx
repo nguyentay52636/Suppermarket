@@ -18,7 +18,6 @@ import SearchAndFilter from "./SearchAndFilter"
 
 export default function Header() {
 
-
     const navigationItems = [
         { href: "/", label: "Trang chủ", icon: Home, active: true },
         { href: "/products", label: "Sản phẩm", icon: Package, active: false },
@@ -48,6 +47,7 @@ export default function Header() {
 
                             {/* Navigation Menu - Hidden on mobile */}
                             <nav className="hidden lg:flex items-center space-x-8 rounded-md">
+
                                 {navigationItems.map((item) => (
                                     <Link key={item.href} href={item.href}>
                                         <Button
