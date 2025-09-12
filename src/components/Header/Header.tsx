@@ -28,7 +28,7 @@ export default function Header() {
 
     return (
         <>
-            <header className="sticky top-0 z-50 bg-white shadow-md">
+            <header className="sticky  top-0 z-50 bg-white shadow-md">
                 <TopBarHeader />
                 {/* Main Header */}
                 <div className="bg-white border-b">

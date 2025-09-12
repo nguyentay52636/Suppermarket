@@ -15,7 +15,7 @@ export default function SiderBarCategory() {
     ]
 
     return (
-        <aside className="w-70 hidden lg:block">
+        <aside className="w-90 h-full hidden lg:block">
             <div className="rounded-xl border shadow-sm overflow-hidden hover:bg-green-700">
                 <div
                     style={{
