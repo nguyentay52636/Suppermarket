@@ -136,7 +136,7 @@ export default function Pagination({
           size="icon"
           onClick={() => onPageChange(Math.min(currentPage + 1, totalPages))}
           disabled={currentPage === totalPages}
-          className="h-8 w-8 rounded-md border-gray-200 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 disabled:bg-gray-50 disabled:text-gray-400 cursor-pointer"
+          className="h-8 w-8 rounded-md border-gray-200 bg-white text-gray-500 hover:bg-green-500 hover:border-white-300 hover:text-white disabled:bg-gray-50 disabled:text-gray-400 cursor-pointer"
         >
           <ChevronRight className="h-4 w-4" />
         </Button>

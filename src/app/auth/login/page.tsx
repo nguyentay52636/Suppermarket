@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, LeafyGreen } from "lucide-react"
 import Link from "next/link"
 import LoginForm from "@/components/auth/Login/components/LoginForm"
 import LoginFormContent from "@/components/auth/Login/components/LoginFormContent"
@@ -52,7 +52,9 @@ export default function Page() {
 
                     <div className="text-center mb-8 lg:hidden">
                         <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span className="text-white font-bold text-xl">BHX</span>
+                            <span className="text-white font-bold text-xl">
+                                <LeafyGreen className="h-8 w-8 text-white!" />
+                            </span>
                         </div>
                         <h1 className="text-2xl font-bold text-foreground">Bách Hóa Xanh</h1>
                     </div>

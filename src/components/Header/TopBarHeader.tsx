@@ -14,15 +14,15 @@ export default function TopBarHeader() {
                         </div>
                         <div className="flex items-center space-x-2">
                             <MapPin className="h-4 w-4" />
-                            <span>Địa chỉ: Hồ Gươm, Vietnam</span>
+                            <span>Địa chỉ: HCM, Vietnam</span>
                         </div>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <Link href="/auth/login" className="hover:text-primary/80">
+                        <Link href="/auth/login" className="">
                             <span>Đăng nhập</span>
                         </Link>
                         <span className="text-primary-foreground/60">/</span>
-                        <Link href="/auth/register" className="hover:text-primary/80">
+                        <Link href="/auth/register" className="">
                             <span>Đăng ký</span>
                         </Link>
                     </div>

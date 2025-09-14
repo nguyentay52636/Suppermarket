@@ -63,7 +63,7 @@ export function PaginationProducts({ currentPage, totalPages, onPageChange }: Pa
       variant: (currentPage === page ? "default" : "outline") as "default" | "outline",
       onClick: () => onPageChange(page),
       className: `rounded-full w-14 h-14 p-0 text-sm ${currentPage === page
-        ? "bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white"
+        ? "bg-green-500 text-white hover:bg-green-500/90 cursor-pointer "
         : "border-primary text-primary hover:bg-primary/10"
         }`,
     };
@@ -84,10 +84,10 @@ export function PaginationProducts({ currentPage, totalPages, onPageChange }: Pa
   }
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex justify-center items-center gap-4 my-8">
       <Button
         variant="ghost"
-        className="flex items-center gap-2 rounded-full cursor-pointer text-primary hover:bg-primary/10"
+        className="flex items-center cursor-pointer gap-2 rounded-full text-primary hover:bg-primary/10"
         onClick={prev}
         disabled={currentPage === 1}
       >

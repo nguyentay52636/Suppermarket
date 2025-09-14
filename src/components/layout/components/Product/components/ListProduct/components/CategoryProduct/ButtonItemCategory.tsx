@@ -27,13 +27,13 @@ export default function ButtonItemCategory({
       <Button
         variant={isSelected ? "default" : "outline"}
         onClick={onClick}
-        className={`h-auto p-6 flex flex-col items-center space-y-3 group hover:shadow-md transition-all ${isSelected
-          ? "bg-green-600 text-white border-green-600"
-          : "hover:bg-gray-50 border-gray-200"
+        className={`h-auto cursor-pointer p-6 flex flex-col items-center space-y-3 group hover:shadow-md transition-all ${isSelected
+          ? "bg-green-600 text-white border-green-600 cursor-pointer"
+          : "hover:bg-gray-50! cursor-pointer border-gray-200"
           }`}
       >
         <div
-          className={`w-12 h-12 rounded-full flex items-center justify-center ${isSelected ? "bg-white/20" : category.color
+          className={`w-12 h-12 cursor-pointer rounded-full flex items-center justify-center ${isSelected ? "bg-white/20" : category.color
             }`}
         >
           <IconComponent className={`h-6 w-6 ${isSelected ? "text-white" : ""}`} />
@@ -50,7 +50,7 @@ export default function ButtonItemCategory({
       variant={isSelected ? "default" : "outline"}
       size="sm"
       onClick={onClick}
-      className={`flex items-center space-x-2 shrink-0 h-10 px-4 ${isSelected
+      className={`flex cursor-pointer items-center space-x-2 shrink-0 h-10 px-4 ${isSelected
         ? "bg-green-600 text-white border-green-600 hover:bg-green-700"
         : "hover:bg-gray-50 border-gray-200"
         }`}

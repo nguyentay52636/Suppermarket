@@ -9,6 +9,7 @@ import {
     Newspaper,
     Info,
     MessageCircle,
+    LeafyGreen,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -37,7 +38,9 @@ export default function Header() {
                             {/* Logo */}
                             <Link href="/" className="flex items-center space-x-3">
                                 <div className="w-10 h-10 md:w-12 md:h-12 bg-primary rounded-lg flex items-center justify-center">
-                                    <span className="text-white font-bold text-sm md:text-lg">BHX</span>
+                                    <span className="text-white font-bold text-sm md:text-lg">
+                                        <LeafyGreen className="h-8 w-8 text-white!" />
+                                    </span>
                                 </div>
                                 <div className="hidden sm:block">
                                     <h1 className="text-xl md:text-2xl font-bold text-primary">BÁCH HÓA XANH</h1>
