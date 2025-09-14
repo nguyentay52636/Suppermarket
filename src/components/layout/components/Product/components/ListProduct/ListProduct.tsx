@@ -1,16 +1,10 @@
 "use client"
-import { Button } from "@/components/ui/button"
-import { Plus, Star, Heart, Eye, Search } from "lucide-react"
-import { useState, useMemo } from "react"
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination"
+import { Search } from "lucide-react"
+import { useState, useMemo, useEffect } from "react"
+import ProductItem from "./components/ProductItem"
+import { usePagination } from "@/context/PaginationContext"
+import { PaginationProducts } from "./components/PaginationProducts"
+
 
 interface Product {
     id: string
@@ -233,11 +227,10 @@ const products: Product[] = [
     },
 ]
 
-const ITEMS_PER_PAGE = 8
-
 export function ListProduct({ selectedCategory, searchQuery, onAddToCart, searchFilters }: ProductGridProps) {
     const [hoveredProduct, setHoveredProduct] = useState<string | null>(null)
-    const [currentPage, setCurrentPage] = useState(1)
+    const { paginationState, setCurrentPage, setTotalItems } = usePagination()
+    const { currentPage, totalPages, rowsPerPage } = paginationState
 
     const filteredProducts = useMemo(() => {
         return products.filter((product) => {
@@ -271,22 +264,20 @@ export function ListProduct({ selectedCategory, searchQuery, onAddToCart, search
         })
     }, [selectedCategory, searchQuery, searchFilters])
 
-    const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE)
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-    const endIndex = startIndex + ITEMS_PER_PAGE
+    const startIndex = (currentPage - 1) * rowsPerPage
+    const endIndex = startIndex + rowsPerPage
     const currentProducts = filteredProducts.slice(startIndex, endIndex)
 
-    // Reset to first page when filters change
-    useMemo(() => {
-        setCurrentPage(1)
-    }, [selectedCategory, searchQuery, searchFilters])
+    // Update total items when filtered products change
+    useEffect(() => {
+        setTotalItems(filteredProducts.length)
+    }, [filteredProducts.length, setTotalItems])
 
-    const formatPrice = (price: number) => {
-        return new Intl.NumberFormat("vi-VN", {
-            style: "currency",
-            currency: "VND",
-        }).format(price)
-    }
+    // Reset to first page when filters change
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [selectedCategory, searchQuery, searchFilters, setCurrentPage])
+
 
     return (
         <div>
@@ -308,214 +299,19 @@ export function ListProduct({ selectedCategory, searchQuery, onAddToCart, search
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
                 {currentProducts.map((product) => (
-                    <div
+                    <ProductItem
                         key={product.id}
-                        style={{
-                            backgroundColor: "#ffffff !important",
-                            border: "1px solid #e5e7eb",
-                            borderRadius: "12px",
-                            overflow: "hidden",
-                            boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
-                            transition: "all 0.3s ease",
-                        }}
-                        onMouseEnter={() => setHoveredProduct(product.id)}
+                        product={product}
+                        onAddToCart={onAddToCart}
+                        hoveredProduct={hoveredProduct}
+                        onMouseEnter={setHoveredProduct}
                         onMouseLeave={() => setHoveredProduct(null)}
-                    >
-                        <div style={{ padding: "0" }}>
-                            <div className="relative overflow-hidden">
-                                <img
-                                    src={product.image || "/placeholder.svg?height=200&width=200&query=grocery product"}
-                                    alt={product.name}
-                                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                                />
-
-                                {/* Overlay badges and actions */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <div className="absolute top-3 right-3 flex flex-col space-y-2">
-                                        <Button size="sm" variant="secondary" className="h-8 w-8 p-0 bg-white/90 hover:bg-white">
-                                            <Heart className="h-4 w-4" />
-                                        </Button>
-                                        <Button size="sm" variant="secondary" className="h-8 w-8 p-0 bg-white/90 hover:bg-white">
-                                            <Eye className="h-4 w-4" />
-                                        </Button>
-                                    </div>
-                                </div>
-
-                                {/* Discount badge */}
-                                {product.discount && (
-                                    <div
-                                        style={{
-                                            position: "absolute",
-                                            top: "12px",
-                                            left: "12px",
-                                            backgroundColor: "#ef4444 !important",
-                                            color: "#ffffff !important",
-                                            padding: "2px 8px",
-                                            borderRadius: "4px",
-                                            fontSize: "12px",
-                                            fontWeight: "500",
-                                        }}
-                                    >
-                                        -{product.discount}%
-                                    </div>
-                                )}
-
-                                {/* Out of stock overlay */}
-                                {!product.inStock && (
-                                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                                        <div
-                                            style={{
-                                                backgroundColor: "#ffffff !important",
-                                                color: "#1f2937 !important",
-                                                padding: "4px 12px",
-                                                borderRadius: "4px",
-                                                fontSize: "12px",
-                                                fontWeight: "500",
-                                            }}
-                                        >
-                                            Hết hàng
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            <div style={{ padding: "16px", display: "flex", flexDirection: "column", gap: "12px" }}>
-                                <h3
-                                    style={{
-                                        fontWeight: "600",
-                                        fontSize: "14px",
-                                        lineHeight: "1.4",
-                                        color: "#1f2937 !important",
-                                        minHeight: "2.5rem",
-                                        display: "-webkit-box",
-                                        WebkitLineClamp: 2,
-                                        WebkitBoxOrient: "vertical",
-                                        overflow: "hidden",
-                                    }}
-                                >
-                                    {product.name}
-                                </h3>
-
-                                <div className="flex items-center space-x-1">
-                                    <div className="flex">
-                                        {[...Array(5)].map((_, i) => (
-                                            <Star
-                                                key={i}
-                                                className={`h-3 w-3 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
-                                            />
-                                        ))}
-                                    </div>
-                                    <span className="text-xs text-muted-foreground">({product.rating})</span>
-                                </div>
-
-                                <div className="space-y-1">
-                                    <div className="flex items-center space-x-2">
-                                        <span style={{ fontWeight: "700", color: "#16a34a !important", fontSize: "18px" }}>
-                                            {formatPrice(product.price)}
-                                        </span>
-                                        {product.originalPrice && (
-                                            <span style={{ fontSize: "14px", color: "#6b7280 !important", textDecoration: "line-through" }}>
-                                                {formatPrice(product.originalPrice)}
-                                            </span>
-                                        )}
-                                    </div>
-                                    {product.discount && (
-                                        <p style={{ fontSize: "12px", color: "#16a34a !important", fontWeight: "500" }}>
-                                            Tiết kiệm {formatPrice(product.originalPrice! - product.price)}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <div
-                                    role="button"
-                                    tabIndex={0}
-                                    style={{
-                                        backgroundColor: "#16a34a !important",
-                                        color: "#ffffff !important",
-                                        border: "none !important",
-                                        borderRadius: "6px",
-                                        padding: "8px 12px",
-                                        fontSize: "14px",
-                                        fontWeight: "500",
-                                        cursor: product.inStock ? "pointer" : "not-allowed",
-                                        opacity: product.inStock ? 1 : 0.5,
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        gap: "4px",
-                                        width: "100%",
-                                        transition: "background-color 0.2s ease",
-                                    }}
-                                    onClick={() => product.inStock && onAddToCart(product)}
-                                    onKeyDown={(e) => {
-                                        if ((e.key === "Enter" || e.key === " ") && product.inStock) {
-                                            onAddToCart(product)
-                                        }
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        if (!product.inStock) return
-                                        e.currentTarget.style.backgroundColor = "#15803d !important"
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        if (!product.inStock) return
-                                        e.currentTarget.style.backgroundColor = "#16a34a !important"
-                                    }}
-                                >
-                                    <Plus style={{ width: "16px", height: "16px", color: "#ffffff !important" }} />
-                                    <span style={{ color: "#ffffff !important" }}>
-                                        {hoveredProduct === product.id ? "Thêm ngay" : "Thêm vào giỏ"}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    />
                 ))}
             </div>
 
             {totalPages > 1 && (
-                <div className="mt-8 flex justify-center">
-                    <Pagination>
-                        <PaginationContent>
-                            <PaginationItem>
-                                <PaginationPrevious
-                                    onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-                                    className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
-                                />
-                            </PaginationItem>
-
-                            {[...Array(totalPages)].map((_, index) => {
-                                const page = index + 1
-                                if (page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
-                                    return (
-                                        <PaginationItem key={page}>
-                                            <PaginationLink
-                                                onClick={() => setCurrentPage(page)}
-                                                isActive={currentPage === page}
-                                                className="cursor-pointer"
-                                            >
-                                                {page}
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                    )
-                                } else if (page === currentPage - 2 || page === currentPage + 2) {
-                                    return (
-                                        <PaginationItem key={page}>
-                                            <PaginationEllipsis />
-                                        </PaginationItem>
-                                    )
-                                }
-                                return null
-                            })}
-
-                            <PaginationItem>
-                                <PaginationNext
-                                    onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
-                                    className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
-                                />
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
-                </div>
+                <PaginationProducts currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
             )}
 
             {filteredProducts.length === 0 && (

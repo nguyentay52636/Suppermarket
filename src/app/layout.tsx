@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { PaginationProvider } from "@/context/PaginationContext";
 
 export const metadata: Metadata = {
   title: "Supermarket",
@@ -22,12 +23,14 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange >
-          <ClientLayout>
-            {children}
-          </ClientLayout>
+          <PaginationProvider>
+            <ClientLayout>
+              {children}
+            </ClientLayout>
+          </PaginationProvider>
         </ThemeProvider>
 
       </body>
-    </html>
+    </html >
   );
 }
