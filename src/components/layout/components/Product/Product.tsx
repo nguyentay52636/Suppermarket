@@ -1,108 +1,56 @@
-import React from 'react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Card, CardContent } from '@/components/ui/card'
-import { freshVegetables, freshFruits, featuredProducts } from '@/components/Mock/MockData'
+"use client"
+
+import React, { useState } from 'react'
+import { SearchBar } from './components/SearchBar'
+import { CategoryProduct } from './components/ListProduct/components/CategoryProduct/CategoryProduct'
+import { ListProduct } from './components/ListProduct/ListProduct'
 export default function Product() {
+    const [selectedCategory, setSelectedCategory] = useState("all")
+    const [searchQuery, setSearchQuery] = useState("")
+    const [cartItems, setCartItems] = useState<any[]>([])
+    const [isCartOpen, setIsCartOpen] = useState(false)
+    const [currentView, setCurrentView] = useState("home")
+    const [searchFilters, setSearchFilters] = useState<any>(null)
+
+    const addToCart = (product: any) => {
+        setCartItems((prev) => {
+            const existingItem = prev.find((item) => item.id === product.id)
+            if (existingItem) {
+                return prev.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item))
+            }
+            return [...prev, { ...product, quantity: 1 }]
+        })
+    }
+
+    const updateCartItem = (id: string, quantity: number) => {
+        if (quantity === 0) {
+            setCartItems((prev) => prev.filter((item) => item.id !== id))
+        } else {
+            setCartItems((prev) => prev.map((item) => (item.id === id ? { ...item, quantity } : item)))
+        }
+    }
+
+    const getTotalItems = () => {
+        return cartItems.reduce((total, item) => total + item.quantity, 0)
+    }
+
+    const handleAdvancedSearch = (filters: any) => {
+        setSearchFilters(filters)
+        setSearchQuery(filters.query)
+    }
+
+    const handleResetSearch = () => {
+        setSearchFilters(null)
+        setSearchQuery("")
+    }
+
     return (
         <>
-            <div className="bg-primary text-primary-foreground rounded-t-lg px-6 py-3 inline-block">
-                <h2 className="text-xl font-bold">TRÁI CÂY MỖI NGÀY</h2>
+            <div className="max-w-7xl mx-auto px-4 py-8 space-y-12">
+                <CategoryProduct selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} showAll={true} />
+                <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+                <ListProduct selectedCategory={selectedCategory} searchQuery={searchQuery} onAddToCart={addToCart} searchFilters={searchFilters} />
             </div>
-            <div className="text-center text-muted-foreground mb-4">
-                <p className="text-sm">Tìm trực vệ sinh an toàn thực phẩm cập nhật mới nhất</p>
-                <p className="text-sm">mỗi ngày cho bạn</p>
-            </div>
-
-            <Tabs defaultValue="rau-cu" className="w-full">
-                <div className="flex justify-end mb-4">
-                    <TabsList className="grid w-auto grid-cols-4">
-                        <TabsTrigger value="rau-cu">Rau củ</TabsTrigger>
-                        <TabsTrigger value="hoa-qua">Hoa quả</TabsTrigger>
-                        <TabsTrigger value="thit">Thịt</TabsTrigger>
-                        <TabsTrigger value="hai-san">Hải sản</TabsTrigger>
-                    </TabsList>
-                </div>
-
-                <TabsContent value="rau-cu">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {freshVegetables.map((product: any) => (
-                            <Card key={product.id} className="cursor-pointer hover:shadow-lg transition-shadow">
-                                <CardContent className="p-3">
-                                    <div className="relative mb-3">
-                                        <img
-                                            src={product.image || "/placeholder.svg"}
-                                            alt={product.name}
-                                            className="w-full h-32 object-cover rounded-md"
-                                        />
-                                    </div>
-                                    <h3 className="font-medium text-sm mb-2 text-center text-primary">{product.name}</h3>
-                                    <p className="text-center text-lg font-bold text-orange-500">{product.price} đ</p>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                </TabsContent>
-
-                <TabsContent value="hoa-qua">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {freshFruits.map((product: any) => (
-                            <Card key={product.id} className="cursor-pointer hover:shadow-lg transition-shadow">
-                                <CardContent className="p-3">
-                                    <div className="relative mb-3">
-                                        <img
-                                            src={product.image || "/placeholder.svg"}
-                                            alt={product.name}
-                                            className="w-full h-32 object-cover rounded-md"
-                                        />
-                                    </div>
-                                    <h3 className="font-medium text-sm mb-2 text-center text-primary">{product.name}</h3>
-                                    <p className="text-center text-lg font-bold text-orange-500">{product.price} đ</p>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                </TabsContent>
-
-                <TabsContent value="thit">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {featuredProducts.slice(1, 2).map((product) => (
-                            <Card key={product.id} className="cursor-pointer hover:shadow-lg transition-shadow">
-                                <CardContent className="p-3">
-                                    <div className="relative mb-3">
-                                        <img
-                                            src={product.image || "/placeholder.svg"}
-                                            alt={product.name}
-                                            className="w-full h-32 object-cover rounded-md"
-                                        />
-                                    </div>
-                                    <h3 className="font-medium text-sm mb-2 text-center text-primary">{product.name}</h3>
-                                    <p className="text-center text-lg font-bold text-orange-500">{product.price} đ</p>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                </TabsContent>
-
-                <TabsContent value="hai-san">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <Card className="cursor-pointer hover:shadow-lg transition-shadow">
-                            <CardContent className="p-3">
-                                <div className="relative mb-3">
-                                    <img
-                                        src="/fresh-fish-seafood.jpg"
-                                        alt="Cá tươi"
-                                        className="w-full h-32 object-cover rounded-md"
-                                    />
-                                </div>
-                                <h3 className="font-medium text-sm mb-2 text-center text-primary">Cá tươi</h3>
-                                <p className="text-center text-lg font-bold text-orange-500">120.000 đ</p>
-                            </CardContent>
-                        </Card>
-                    </div>
-                </TabsContent>
-            </Tabs>
-
         </>
-
     )
 }

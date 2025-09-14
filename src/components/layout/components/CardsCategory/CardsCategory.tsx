@@ -24,11 +24,11 @@ const items = [
 
 export default function CategoryGrid() {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 m-6">
             {items.map((item, index) => (
                 <Card
                     key={index}
-                    className="relative overflow-hidden cursor-pointer hover:shadow-lg transition-shadow h-48"
+                    className="relative overflow-hidden h-[300px]! cursor-pointer hover:shadow-lg transition-shadow h-48"
                 >
                     <div
                         className="absolute  inset-0 bg-cover bg-center"
