@@ -23,8 +23,8 @@ export default function Header() {
         { href: "/", label: "Trang chủ", icon: Home, active: true },
         { href: "/products", label: "Sản phẩm", icon: Package, active: false },
         { href: "/news", label: "Tin tức", icon: Newspaper, active: false },
-        { href: "#", label: "Giới thiệu", icon: Info, active: false },
-        { href: "#", label: "Liên hệ", icon: MessageCircle, active: false },
+        { href: "/about", label: "Giới thiệu", icon: Info, active: false },
+        { href: "/contact", label: "Liên hệ", icon: MessageCircle, active: false },
         { href: "/admin", label: "Quản lý ", icon: User, active: false },
     ]
 

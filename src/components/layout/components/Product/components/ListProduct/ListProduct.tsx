@@ -228,7 +228,7 @@ const products: Product[] = [
 
 export function ListProduct({ selectedCategory, searchQuery, searchFilters }: ProductGridProps) {
     const [hoveredProduct, setHoveredProduct] = useState<string | null>(null)
-    const { paginationState, setCurrentPage, setTotalItems } = usePagination()
+    const { paginationState, setCurrentPage, setTotalItems } = usePagination();
     const { currentPage, totalPages, rowsPerPage } = paginationState
 
     const filteredProducts = useMemo(() => {

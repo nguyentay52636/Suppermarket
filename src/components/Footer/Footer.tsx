@@ -84,7 +84,7 @@ export default function Footer() {
                             <div className="space-y-4">
                                 <div className="bg-white/10 rounded-lg p-4">
                                     <img
-                                        src=""
+                                        src="/placeholder.svg?height=80&width=80&text=QR"
                                         alt="Bach Hoa Xanh Mobile App"
                                         className="w-full h-24 object-cover rounded mb-2"
                                     />

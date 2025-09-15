@@ -22,9 +22,7 @@ export default function RootLayout({
         <ReduxProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange >
+            defaultTheme="system" >
             <PaginationProvider>
               <ClientLayout>
                 {children}
