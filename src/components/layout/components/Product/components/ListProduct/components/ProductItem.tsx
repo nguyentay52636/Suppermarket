@@ -4,11 +4,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Plus, Star, Heart, Eye } from "lucide-react"
 import { Product } from '../Mock/dataProduct'
+import { useAppDispatch } from '@/redux/hooks'
+import { addToCart } from '@/redux/slices/cartSlice'
 
 
 interface ProductItemProps {
   product: Product
-  onAddToCart: (product: Product) => void
   hoveredProduct: string | null
   onMouseEnter: (productId: string) => void
   onMouseLeave: () => void
@@ -16,16 +17,27 @@ interface ProductItemProps {
 
 export default function ProductItem({
   product,
-  onAddToCart,
   hoveredProduct,
   onMouseEnter,
   onMouseLeave
 }: ProductItemProps) {
+  const dispatch = useAppDispatch()
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("vi-VN", {
       style: "currency",
       currency: "VND",
     }).format(price)
+  }
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      id: parseInt(product.id),
+      name: product.name,
+      price: product.price.toString(),
+      image: product.image,
+      unit: 'cái'
+    }))
   }
 
   return (
@@ -119,7 +131,7 @@ export default function ProductItem({
               : "bg-gray-400 text-white cursor-not-allowed opacity-50"
               }`}
             disabled={!product.inStock}
-            onClick={() => product.inStock && onAddToCart(product)}
+            onClick={() => product.inStock && handleAddToCart()}
           >
             <Plus className="w-4 h-4" />
             <span>

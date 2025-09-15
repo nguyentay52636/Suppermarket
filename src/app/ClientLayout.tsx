@@ -10,12 +10,13 @@ export default function ClientLayout({
 }) {
   const pathname = usePathname();
   const isAuthPage = pathname?.startsWith("/auth/") ?? false;
+  const isAdminPage = pathname?.startsWith("/admin") ?? false;
 
   return (
     <>
-      {!isAuthPage && <Header />}
+      {!isAuthPage && !isAdminPage && <Header />}
       {children}
-      {!isAuthPage && <Footer />}
+      {!isAuthPage && !isAdminPage && <Footer />}
     </>
   );
 }

@@ -22,7 +22,6 @@ interface Product {
 interface ProductGridProps {
     selectedCategory: string
     searchQuery: string
-    onAddToCart: (product: Product) => void
     searchFilters?: any
 }
 
@@ -227,7 +226,7 @@ const products: Product[] = [
     },
 ]
 
-export function ListProduct({ selectedCategory, searchQuery, onAddToCart, searchFilters }: ProductGridProps) {
+export function ListProduct({ selectedCategory, searchQuery, searchFilters }: ProductGridProps) {
     const [hoveredProduct, setHoveredProduct] = useState<string | null>(null)
     const { paginationState, setCurrentPage, setTotalItems } = usePagination()
     const { currentPage, totalPages, rowsPerPage } = paginationState
@@ -302,7 +301,6 @@ export function ListProduct({ selectedCategory, searchQuery, onAddToCart, search
                     <ProductItem
                         key={product.id}
                         product={product}
-                        onAddToCart={onAddToCart}
                         hoveredProduct={hoveredProduct}
                         onMouseEnter={setHoveredProduct}
                         onMouseLeave={() => setHoveredProduct(null)}

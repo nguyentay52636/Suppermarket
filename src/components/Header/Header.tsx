@@ -72,7 +72,6 @@ export default function Header() {
                             <SearchAndFilter navigationItems={navigationItems} />
                         </div>
 
-                        {/* Mobile Search - Only show when menu is closed */}
                         <div className="md:hidden mt-4 relative">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                             <Input placeholder="Tìm kiếm sản phẩm..." className="pl-10" />

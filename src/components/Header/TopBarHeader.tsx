@@ -16,7 +16,7 @@ export default function TopBarHeader() {
                             <MapPin className="h-4 w-4" />
                             <span>Địa chỉ: HCM, Vietnam</span>
                         </div>
-                    </div>
+                    </div>  
                     <div className="flex items-center space-x-4">
                         <Link href="/auth/login" className="">
                             <span>Đăng nhập</span>
