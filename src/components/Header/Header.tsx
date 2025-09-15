@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import {
     Search,
     Phone,
@@ -10,6 +9,7 @@ import {
     Info,
     MessageCircle,
     LeafyGreen,
+    User,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -25,6 +25,7 @@ export default function Header() {
         { href: "/news", label: "Tin tức", icon: Newspaper, active: false },
         { href: "#", label: "Giới thiệu", icon: Info, active: false },
         { href: "#", label: "Liên hệ", icon: MessageCircle, active: false },
+        { href: "/admin", label: "Quản lý ", icon: User, active: false },
     ]
 
     return (
@@ -95,16 +96,16 @@ export default function Header() {
                 </div>
             </div>
 
-            <div className="fixed right-4 bottom-20 z-40 flex flex-col space-y-2 md:hidden">
-                <a
+            <div className="fixed right-5 cursor-pointer bottom-25 z-40 flex flex-col space-y-2 ">
+                <Link
                     href="tel:0912117494"
-                    className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                    className="w-12 h-12 bg-green-500 hover:bg-green-600! rounded-full flex items-center justify-center shadow-lg"
                 >
                     <Phone className="h-6 w-6 text-white" />
-                </a>
-                <a href="#" className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                </Link>
+                <Link href="#" className="w-12 cursor-pointer h-12  hover:bg-blue-600! bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
                     <MessageCircle className="h-6 w-6 text-white" />
-                </a>
+                </Link>
             </div>
         </>
     )

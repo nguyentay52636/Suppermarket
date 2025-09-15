@@ -10,17 +10,17 @@ export function HeroBanner() {
 
     const slides = [
         {
-            image: "/public/bg-a.jpg",
+            image: "/bg-a.jpg",
             title: "Siêu thị hiện đại",
             description: "Không gian mua sắm thoải mái",
         },
         {
-            image: "/public/bg-b.jpg",
+            image: "/bg-b.jpg",
             title: "Rau củ tươi ngon",
             description: "Được chọn lọc kỹ càng",
         },
         {
-            image: "/public/bg-c.jpg",
+            image: "/bg-c.jpg",
             title: "Trái cây organic",
             description: "Chất lượng cao cấp",
         },
@@ -105,20 +105,31 @@ export function HeroBanner() {
                     <div className="relative">
                         <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
                             <div
-                                className="flex transition-transform duration-500 ease-in-out"
+                                className="flex transition-transform duration-700 ease-in-out"
                                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                             >
                                 {slides.map((slide, index) => (
                                     <div key={index} className="w-full flex-shrink-0 relative">
                                         <img
-                                            src={slide.image || "/placeholder.svg"}
+                                            src={slide.image || ""}
                                             alt={slide.title}
                                             className="w-full h-[400px] object-cover"
                                         />
-                                        <div className="absolute inset-0 bg-black/20 flex items-end">
-                                            <div className="p-6 text-white">
-                                                <h3 className="text-xl font-bold mb-2">{slide.title}</h3>
-                                                <p className="text-sm opacity-90">{slide.description}</p>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end">
+                                            <div className="p-6 text-white transform transition-all duration-700 ease-out"
+                                                style={{
+                                                    opacity: index === currentSlide ? 1 : 0.7,
+                                                    transform: index === currentSlide
+                                                        ? 'translateY(0) scale(1)'
+                                                        : 'translateY(20px) scale(0.95)'
+                                                }}>
+                                                <h3 className="text-2xl font-bold mb-2 animate-fade-in-up">
+                                                    {slide.title}
+                                                </h3>
+                                                <p className="text-base opacity-90 animate-fade-in-up"
+                                                    style={{ animationDelay: '0.2s' }}>
+                                                    {slide.description}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -128,24 +139,25 @@ export function HeroBanner() {
                             {/* Navigation buttons */}
                             <button
                                 onClick={prevSlide}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 transition-all duration-200 shadow-lg"
+                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
                             >
                                 <ChevronLeft className="w-5 h-5" />
                             </button>
                             <button
                                 onClick={nextSlide}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 transition-all duration-200 shadow-lg"
+                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
                             >
                                 <ChevronRight className="w-5 h-5" />
                             </button>
 
-                            {/* Slide indicators */}
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3">
                                 {slides.map((_, index) => (
                                     <button
                                         key={index}
                                         onClick={() => setCurrentSlide(index)}
-                                        className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentSlide ? "bg-white" : "bg-white/50"
+                                        className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${index === currentSlide
+                                            ? "bg-white shadow-lg scale-125"
+                                            : "bg-white/60 hover:bg-white/80"
                                             }`}
                                     />
                                 ))}
