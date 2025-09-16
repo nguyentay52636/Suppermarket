@@ -6,7 +6,6 @@ export default function AdminPage() {
     return (
         <>
             <AdminLayout />
-            <ProductManager />
         </>
     )
 }
