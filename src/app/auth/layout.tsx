@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import "../globals.css";
-
 
 export const metadata: Metadata = {
-    title: "Supermarket",
-    description: "Supermarket",
+    title: "Supermarket | Auth",
+    description: "Authentication pages",
 };
 
-export default function RootLayout({
+export default function AuthLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en">
-            <body>
-                {children}
-            </body>
-        </html>
+        <div className="min-h-screen bg-background">
+            {children}
+        </div>
     );
 }

@@ -11,19 +11,14 @@ import {
 import { Button } from '@/components/ui/button'
 import { MoreHorizontal, Edit, Trash2, Eye } from 'lucide-react'
 
-interface ActionTableEmployeeProps {
-    employee: any;
-    handleView: (employee: any) => void;
-    onEdit: (employee: any) => void;
-    handleDelete?: (employee: any) => void;
-}
+// interface ActionTableEmployeeProps {
+//     employee: any;
+//     handleView: (employee: any) => void;
+//     onEdit: (employee: any) => void;
+//     handleDelete?: (employee: any) => void;
+// }
 
-export default function ActionTableEmployee({
-    employee,
-    handleView,
-    onEdit,
-    handleDelete
-}: ActionTableEmployeeProps) {
+export default function ActionTableEmployee() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -34,17 +29,17 @@ export default function ActionTableEmployee({
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Hành động</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => handleView(employee)}>
+                <DropdownMenuItem onClick={() => { }}>
                     <Eye className="h-4 w-4 mr-2" />
                     Xem chi tiết
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => onEdit(employee)}>
+                <DropdownMenuItem onClick={() => { }}>
                     <Edit className="h-4 w-4 mr-2" />
                     Chỉnh sửa
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                    onClick={() => handleDelete?.(employee)}
+                    onClick={() => { }}
                     className="text-red-600"
                 >
                     <Trash2 className="h-4 w-4 mr-2" />

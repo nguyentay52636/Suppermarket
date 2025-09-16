@@ -1,5 +1,5 @@
 import Pagination from '@/components/ui/pagination';
-import { usePagination } from '../../../context/PaginationContext';
+import { usePagination } from '@/context/PaginationContext';
 
 interface PaginationManagerEmployeeProps {
     totalItems: number;

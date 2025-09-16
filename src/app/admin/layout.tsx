@@ -2,10 +2,11 @@ import type React from "react"
 import "../globals.css"
 import { Suspense } from "react"
 import { ThemeProvider } from "@/components/ThemeProvider"
+import { SiderBarAdmin } from "@/components/admin/components/SideBar/SiderBarAdmin"
 
 
 
-export default function AdminLayout({
+export default function AdminRootLayout({
     children,
 }: {
     children: React.ReactNode
@@ -16,7 +17,15 @@ export default function AdminLayout({
 
                 <Suspense fallback={null}>
                     <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-                        {children}
+
+                        <div className="flex">
+                            <SiderBarAdmin />
+                            <div className="flex-1">
+                                {children}
+                            </div>
+                        </div>
+
+
                     </ThemeProvider>
                 </Suspense>
             </body>

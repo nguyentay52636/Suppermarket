@@ -3,6 +3,7 @@ import { Phone, MapPin } from 'lucide-react'
 import Link from 'next/link'
 
 export default function TopBarHeader() {
+    
     return (
         <div className="bg-primary text-white hover:text-white py-2 hidden md:block">
             <div className="container mx-auto px-4">

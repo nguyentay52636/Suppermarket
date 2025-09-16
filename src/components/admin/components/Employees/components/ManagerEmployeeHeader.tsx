@@ -6,7 +6,7 @@ export default function ManagerEmployeeHeader() {
         <div className="flex flex-col my-4 mx-4 md:flex-row justify-between items-start md:items-center gap-4">
             <div className="space-y-2">
                 <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <div className="w-12 h-12  bg-green-700 rounded-xl flex items-center justify-center shadow-lg">
                         <Users className="w-6 h-6 text-white" />
                     </div>
                     <div>
@@ -19,7 +19,7 @@ export default function ManagerEmployeeHeader() {
             </div>
             <Button
 
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-green-800  hover:bg-green-700 cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300"
             >
                 <Plus className="h-4 w-4 mr-2" />
                 Thêm nhân viên

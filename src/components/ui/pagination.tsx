@@ -94,7 +94,7 @@ export default function Pagination({
           size="icon"
           onClick={() => onPageChange(1)}
           disabled={currentPage === 1}
-          className="h-8 w-8 rounded-md border-gray-200 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 disabled:bg-gray-50 disabled:text-gray-400 cursor-pointer"
+          className="h-8 w-8 rounded-md border-gray-200 bg-white text-gray-500 hover:bg-green-50 hover:border-green-300 hover:text-green-700 disabled:bg-gray-50 disabled:text-gray-400 cursor-pointer"
         >
           <ChevronsLeft className="h-4 w-4" />
         </Button>
@@ -104,7 +104,7 @@ export default function Pagination({
           size="icon"
           onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
           disabled={currentPage === 1}
-          className="h-8 w-8 rounded-md border-gray-200 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 disabled:bg-gray-50 disabled:text-gray-400 cursor-pointer"
+          className="h-8 w-8 rounded-md border-gray-200 bg-white text-gray-500 hover:bg-green-50 hover:border-green-300 hover:text-green-700 disabled:bg-gray-50 disabled:text-gray-400 cursor-pointer"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
@@ -119,8 +119,8 @@ export default function Pagination({
                 size="sm"
                 onClick={() => onPageChange(page)}
                 className={`h-8 w-8 p-0 rounded-md cursor-pointer ${page === currentPage
-                  ? 'bg-blue-700 text-white hover:bg-blue-800'
-                  : 'border-gray-200 bg-white text-gray-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700'
+                  ? 'bg-green-700 text-white hover:bg-green-800'
+                  : 'border-gray-200 bg-white text-gray-700 hover:bg-green-50 hover:border-green-300 hover:text-green-700'
                   }`}
               >
                 {page}
@@ -146,7 +146,7 @@ export default function Pagination({
           size="icon"
           onClick={() => onPageChange(totalPages)}
           disabled={currentPage === totalPages}
-          className="h-8 w-8 rounded-md border-gray-200 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 disabled:bg-gray-50 disabled:text-gray-400 cursor-pointer"
+          className="h-8 w-8 rounded-md border-gray-200 bg-white text-gray-500 bg-green-700 hover:bg-green-800 hover:border-white-300 hover:text-white disabled:bg-gray-50 disabled:text-gray-400 cursor-pointer"
         >
           <ChevronsRight className="h-4 w-4" />
         </Button>
@@ -154,7 +154,7 @@ export default function Pagination({
 
       {/* Page info */}
       <div className="text-sm font-medium text-gray-700">
-        Hiển thị <span className="text-blue-700 font-semibold">{startItem}-{endItem}</span> trên <span className="text-blue-700 font-semibold">{totalItems}</span> kết quả
+        Hiển thị <span className="text-green-700 font-semibold">{startItem}-{endItem}</span> trên <span className="text-green-700 font-semibold">{totalItems}</span> kết quả
       </div>
     </div>
   );
