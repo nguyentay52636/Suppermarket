@@ -1,14 +1,16 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Minus, Plus, Trash2 } from 'lucide-react'
-import { CartItem as CartItemType } from '../mock'
-import { useAppDispatch } from '@/redux/hooks'
-import { decreaseQuantity, increaseQuantity, removeFromCart } from '@/redux/slices/cartSlice'
+import { CartItem as CartItemType } from '@/redux/slices/cartSlice'
+
 interface QuantityCartItemProps {
     item: CartItemType
+    onIncrease: (id: number) => void
+    onDecrease: (id: number) => void
+    onRemove: (id: number) => void
 }
-export default function QuantityCartItem({ item }: QuantityCartItemProps) {
-    const dispatch = useAppDispatch()
+
+export default function QuantityCartItem({ item, onIncrease, onDecrease, onRemove }: QuantityCartItemProps) {
     return (
         <>
             <div className="flex items-center justify-between sm:justify-end space-x-4">
@@ -17,8 +19,7 @@ export default function QuantityCartItem({ item }: QuantityCartItemProps) {
                         size="sm"
                         variant="ghost"
                         className="h-10 w-10 p-0 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        disabled={!item.inStock}
-                        onClick={() => dispatch(decreaseQuantity(Number(item.id)))}
+                        onClick={() => onDecrease(item.id)}
                     >
                         <Minus className="h-4 w-4" />
                     </Button>
@@ -29,8 +30,7 @@ export default function QuantityCartItem({ item }: QuantityCartItemProps) {
                         size="sm"
                         variant="ghost"
                         className="h-10 w-10 p-0 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        disabled={!item.inStock}
-                        onClick={() => dispatch(increaseQuantity(Number(item.id)))}
+                        onClick={() => onIncrease(item.id)}
                     >
                         <Plus className="h-4 w-4" />
                     </Button>
@@ -40,7 +40,7 @@ export default function QuantityCartItem({ item }: QuantityCartItemProps) {
                     size="sm"
                     variant="ghost"
                     className="h-10 w-10 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
-                    onClick={() => dispatch(removeFromCart(Number(item.id)))}
+                    onClick={() => onRemove(item.id)}
                 >
                     <Trash2 className="h-4 w-4" />
                 </Button>

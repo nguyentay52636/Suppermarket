@@ -33,7 +33,7 @@ export default function Coupon({ appliedCoupon, couponCode, setCouponCode, apply
                             <Button
                                 onClick={applyCoupon}
                                 variant="outline"
-                                className="dark:border-gray-600 dark:text-white bg-transparent"
+                                className="dark:border-gray-600 hover:bg-gray-300 bg-gray-200! cursor-pointer dark:text-white bg-transparent"
                             >
                                 Áp dụng
                             </Button>

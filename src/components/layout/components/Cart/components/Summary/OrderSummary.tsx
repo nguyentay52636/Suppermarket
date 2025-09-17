@@ -4,6 +4,7 @@ import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { CreditCard } from 'lucide-react'
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 interface OrderSummaryProps {
   getTotalItems: () => number
@@ -21,6 +22,7 @@ export default function OrderSummary({
   getFinalTotal,
   appliedCoupon
 }: OrderSummaryProps) {
+  const router = useRouter()
   return (
     <>
       <Card className="dark:bg-gray-800 dark:border-gray-700">
@@ -70,13 +72,14 @@ export default function OrderSummary({
 
           <div className="space-y-3 pt-4">
             <Button
-              className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+              className="w-full h-12 bg-primary cursor-pointer hover:bg-primary/90 text-primary-foreground font-semibold"
               size="lg"
+              onClick={() => router.push('/checkout')}
             >
               <CreditCard className="w-5 h-5 mr-2" />
-              Thanh toán ngay
+              Xác nhận mua hàng
             </Button>
-            <Button variant="outline" className="w-full h-12 dark:border-gray-600 dark:text-white bg-transparent">
+            <Button variant="outline" className="w-full hover:bg-gray-300 h-12 cursor-pointer dark:border-gray-600 dark:text-white bg-transparent">
               Tiếp tục mua sắm
             </Button>
           </div>

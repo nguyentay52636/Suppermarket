@@ -22,13 +22,6 @@ export default function Cart({ children }: CartProps) {
     const dispatch = useAppDispatch()
     const { items, totalItems, totalPrice } = useAppSelector(state => state.cart)
 
-    const formatPrice = (price: number) => {
-        return new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND'
-        }).format(price)
-    }
-
     const handleIncrease = (id: number) => {
         dispatch(increaseQuantity(id))
     }

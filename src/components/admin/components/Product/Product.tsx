@@ -25,6 +25,8 @@ const mockProducts = [
     stock: 150,
     status: "active",
     image: "/fresh-green-vegetables.jpg",
+    unit: "kg",
+    inStock: true,
   },
   {
     id: 2,
@@ -34,6 +36,8 @@ const mockProducts = [
     stock: 45,
     status: "active",
     image: "/fresh-pork-belly.jpg",
+    unit: "kg",
+    inStock: true,
   },
   {
     id: 3,
@@ -43,6 +47,8 @@ const mockProducts = [
     stock: 20,
     status: "active",
     image: "/fresh-salmon-fish.jpg",
+    unit: "kg",
+    inStock: true,
   },
   {
     id: 4,
@@ -52,6 +58,8 @@ const mockProducts = [
     stock: 0,
     status: "out_of_stock",
     image: "/fresh-fuji-apples.jpg",
+    unit: "kg",
+    inStock: true,
   },
   {
     id: 5,
@@ -61,6 +69,7 @@ const mockProducts = [
     stock: 200,
     status: "active",
     image: "assets/images/milk.jpg",
+    unit: "kg",
   },
 ]
 

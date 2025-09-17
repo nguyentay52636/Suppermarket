@@ -7,6 +7,7 @@ export interface CartItem {
     quantity: number
     category: string
     inStock: boolean
+    unit: string
 }
 export const cartItems: CartItem[] = [
     {
@@ -18,6 +19,7 @@ export const cartItems: CartItem[] = [
         quantity: 2,
         category: "Thực phẩm khô",
         inStock: true,
+        unit: "kg",
     },
     {
         id: "2",
@@ -27,14 +29,16 @@ export const cartItems: CartItem[] = [
         quantity: 1,
         category: "Thịt tươi",
         inStock: true,
+        unit: "kg",
     },
     {
         id: "3",
         name: "Rau cải ngọt 300g",
         price: 15000,
-        image: "https://cdn.tgdd.vn/Files/2014/09/25/569033/10-loai-trai-cay-cap-cuu-khi-bi-benh1.jpg",
+        image: "/assorted-green-vegetables.png",
         quantity: 3,
         category: "Rau củ",
         inStock: false,
+        unit: "kg",
     },
 ]

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useCallback, useMemo } from 'react';
 
 interface PaginationState {
     currentPage: number;
@@ -41,51 +41,57 @@ export function PaginationProvider({
         rowsPerPage: initialRowsPerPage,
     });
 
-    const setCurrentPage = (page: number) => {
+    const setCurrentPage = useCallback((page: number) => {
         setPaginationState(prev => ({
             ...prev,
             currentPage: page,
         }));
-    };
+    }, []);
 
-    const setRowsPerPage = (rows: number) => {
+    const setRowsPerPage = useCallback((rows: number) => {
         setPaginationState(prev => ({
             ...prev,
             rowsPerPage: rows,
             currentPage: 1,
         }));
-    };
+    }, []);
 
-    const setTotalItems = (total: number) => {
-        setPaginationState(prev => ({
-            ...prev,
-            totalItems: total,
-            totalPages: Math.ceil(total / prev.rowsPerPage),
-        }));
-    };
+    const setTotalItems = useCallback((total: number) => {
+        setPaginationState(prev => {
+            const nextTotalPages = Math.max(1, Math.ceil(total / prev.rowsPerPage));
+            if (prev.totalItems === total && prev.totalPages === nextTotalPages) {
+                return prev;
+            }
+            return {
+                ...prev,
+                totalItems: total,
+                totalPages: nextTotalPages,
+            };
+        });
+    }, []);
 
-    const setTotalPages = (pages: number) => {
+    const setTotalPages = useCallback((pages: number) => {
         setPaginationState(prev => ({
             ...prev,
             totalPages: pages,
         }));
-    };
+    }, []);
 
-    const resetPagination = () => {
+    const resetPagination = useCallback(() => {
         setPaginationState({
             ...defaultPaginationState,
             rowsPerPage: initialRowsPerPage,
         });
-    };
+    }, [initialRowsPerPage]);
 
-    const value: PaginationContextType = {
+    const value: PaginationContextType = useMemo(() => ({
         paginationState,
         setCurrentPage,
         setRowsPerPage,
         setTotalItems,
         setTotalPages,
         resetPagination,
-    };
+    }), [paginationState, setCurrentPage, setRowsPerPage, setTotalItems, setTotalPages, resetPagination]);
 
     return (
         <PaginationContext.Provider value={value}>

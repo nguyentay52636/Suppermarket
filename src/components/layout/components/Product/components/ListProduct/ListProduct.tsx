@@ -270,12 +270,14 @@ export function ListProduct({ selectedCategory, searchQuery, searchFilters }: Pr
     // Update total items when filtered products change
     useEffect(() => {
         setTotalItems(filteredProducts.length)
-    }, [filteredProducts.length, setTotalItems])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filteredProducts.length])
 
     // Reset to first page when filters change
     useEffect(() => {
         setCurrentPage(1)
-    }, [selectedCategory, searchQuery, searchFilters, setCurrentPage])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedCategory, searchQuery, JSON.stringify(searchFilters)])
 
 
     return (

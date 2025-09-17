@@ -1,15 +1,18 @@
 import React from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { CartItem as CartItemType } from '../mock'
+import { CartItem as CartItemType } from '@/redux/slices/cartSlice'
 import { formatPrice } from '@/lib/utils'
 import QuantityCartItem from './QuantityCartItem'
 import ProductInfo from './ProductInfo'
 
 interface CartItemProps {
     item: CartItemType
+    onIncrease: (id: number) => void
+    onDecrease: (id: number) => void
+    onRemove: (id: number) => void
 }
-export default function CartItem({ item }: CartItemProps) {
+export default function CartItem({ item, onIncrease, onDecrease, onRemove }: CartItemProps) {
     return (
         <>
             <Card
@@ -24,26 +27,17 @@ export default function CartItem({ item }: CartItemProps) {
                                 alt={item.name}
                                 className="w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-lg"
                             />
-                            {!item.inStock && (
-                                <div className="absolute inset-0 bg-black/80 rounded-lg flex items-center justify-center">
-                                    <div className="bg-white px-2 py-1 rounded border border-red-600">
-                                        <span className="text-red-600 text-xs font-semibold">Hết hàng</span>
-                                    </div>
-                                </div>
-                            )}
                         </div>
 
                         <ProductInfo item={item} />
-                        <QuantityCartItem item={item} />
+                        <QuantityCartItem
+                            item={item}
+                            onIncrease={onIncrease}
+                            onDecrease={onDecrease}
+                            onRemove={onRemove}
+                        />
                     </div>
 
-                    {!item.inStock && (
-                        <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                            <p className="text-sm text-red-600 dark:text-red-400">
-                                Sản phẩm này hiện đang hết hàng. Vui lòng xóa khỏi giỏ hàng hoặc thay thế bằng sản phẩm khác.
-                            </p>
-                        </div>
-                    )}
                 </CardContent>
             </Card>
         </>

@@ -183,10 +183,10 @@ export default function page() {
                                     <div className="flex items-center">
                                         <div
                                             className={`flex items-center justify-center w-8 h-8 rounded-full border-2 ${step.completed
-                                                    ? "bg-green-600 border-green-600 text-white"
-                                                    : step.current
-                                                        ? "border-green-600 text-green-600 bg-white"
-                                                        : "border-gray-300 text-gray-500 bg-white"
+                                                ? "bg-green-600 border-green-600 text-white"
+                                                : step.current
+                                                    ? "border-green-600 text-green-600 bg-white"
+                                                    : "border-gray-300 text-gray-500 bg-white"
                                                 }`}
                                         >
                                             {step.completed ? (
@@ -286,8 +286,8 @@ export default function page() {
                                             <div
                                                 key={address.id}
                                                 className={`flex items-start space-x-3 p-4 border-2 rounded-lg transition-all ${selectedAddress === address.id.toString()
-                                                        ? "border-green-500 bg-green-50"
-                                                        : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
+                                                    ? "border-green-500 bg-green-50"
+                                                    : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
                                                     }`}
                                             >
                                                 <RadioGroupItem
@@ -472,8 +472,8 @@ export default function page() {
                                                     <div
                                                         key={address.id}
                                                         className={`flex items-start space-x-3 p-4 border-2 rounded-lg transition-all ${selectedBillingAddress === address.id.toString()
-                                                                ? "border-green-500 bg-green-50"
-                                                                : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
+                                                            ? "border-green-500 bg-green-50"
+                                                            : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
                                                             }`}
                                                     >
                                                         <RadioGroupItem
@@ -666,8 +666,8 @@ export default function page() {
                                             </h4>
                                             <div
                                                 className={`flex items-center space-x-3 p-4 border-2 rounded-lg transition-all ${paymentMethod === "cod"
-                                                        ? "border-green-500 bg-green-50"
-                                                        : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
+                                                    ? "border-green-500 bg-green-50"
+                                                    : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
                                                     }`}
                                             >
                                                 <RadioGroupItem value="cod" id="cod" className="text-green-600" />
@@ -694,8 +694,8 @@ export default function page() {
 
                                             <div
                                                 className={`flex items-center space-x-3 p-4 border-2 rounded-lg transition-all ${paymentMethod === "card"
-                                                        ? "border-green-500 bg-green-50"
-                                                        : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
+                                                    ? "border-green-500 bg-green-50"
+                                                    : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
                                                     }`}
                                             >
                                                 <RadioGroupItem value="card" id="card" className="text-green-600" />
@@ -712,8 +712,8 @@ export default function page() {
 
                                             <div
                                                 className={`flex items-center space-x-3 p-4 border-2 rounded-lg transition-all ${paymentMethod === "momo"
-                                                        ? "border-green-500 bg-green-50"
-                                                        : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
+                                                    ? "border-green-500 bg-green-50"
+                                                    : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
                                                     }`}
                                             >
                                                 <RadioGroupItem value="momo" id="momo" className="text-green-600" />
@@ -730,8 +730,8 @@ export default function page() {
 
                                             <div
                                                 className={`flex items-center space-x-3 p-4 border-2 rounded-lg transition-all ${paymentMethod === "zalopay"
-                                                        ? "border-green-500 bg-green-50"
-                                                        : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
+                                                    ? "border-green-500 bg-green-50"
+                                                    : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
                                                     }`}
                                             >
                                                 <RadioGroupItem value="zalopay" id="zalopay" className="text-green-600" />
@@ -748,8 +748,8 @@ export default function page() {
 
                                             <div
                                                 className={`flex items-center space-x-3 p-4 border-2 rounded-lg transition-all ${paymentMethod === "vnpay"
-                                                        ? "border-green-500 bg-green-50"
-                                                        : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
+                                                    ? "border-green-500 bg-green-50"
+                                                    : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
                                                     }`}
                                             >
                                                 <RadioGroupItem value="vnpay" id="vnpay" className="text-green-600" />
@@ -766,8 +766,8 @@ export default function page() {
 
                                             <div
                                                 className={`flex items-center space-x-3 p-4 border-2 rounded-lg transition-all ${paymentMethod === "banking"
-                                                        ? "border-green-500 bg-green-50"
-                                                        : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
+                                                    ? "border-green-500 bg-green-50"
+                                                    : "border-gray-200 hover:border-green-300 hover:bg-green-50/50"
                                                     }`}
                                             >
                                                 <RadioGroupItem value="banking" id="banking" className="text-green-600" />

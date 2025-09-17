@@ -1,6 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { increaseQuantity, decreaseQuantity, removeFromCart } from '@/redux/slices/cartSlice'
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -10,73 +12,47 @@ import HeaderCart from "@/components/layout/components/Cart/components/HeaderCar
 import CartItem from "@/components/layout/components/Cart/components/CartItem/CartItem"
 import Summary from "@/components/layout/components/Cart/components/Summary/Summary"
 
-interface CartItem {
-    id: string
-    name: string
-    price: number
-    originalPrice?: number
-    image: string
-    quantity: number
-    category: string
-    inStock: boolean
-}
-
 export default function CartPage() {
-    // Sample cart data - in real app this would come from state management
-    const [cartItems, setCartItems] = useState<CartItem[]>([
-        {
-            id: "1",
-            name: "Gạo ST25 túi 5kg",
-            price: 125000,
-            originalPrice: 150000,
-            image: "/rice-bag.png",
-            quantity: 2,
-            category: "Thực phẩm khô",
-            inStock: true,
-        },
-        {
-            id: "2",
-            name: "Thịt heo ba chỉ 500g",
-            price: 85000,
-            image: "/pork-meat.jpg",
-            quantity: 1,
-            category: "Thịt tươi",
-            inStock: true,
-        },
-        {
-            id: "3",
-            name: "Rau cải ngọt 300g",
-            price: 15000,
-            image: "/assorted-green-vegetables.png",
-            quantity: 3,
-            category: "Rau củ",
-            inStock: false,
-        },
-    ])
+    const dispatch = useAppDispatch()
+    const { items: cartItems, totalItems, totalPrice } = useAppSelector(state => state.cart)
 
     const [couponCode, setCouponCode] = useState("")
     const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number } | null>(null)
 
+    useEffect(() => {
+        try {
+            const savedCoupon = localStorage.getItem('appliedCoupon')
+            if (savedCoupon) {
+                const parsedCoupon = JSON.parse(savedCoupon)
+                if (parsedCoupon && typeof parsedCoupon === 'object') setAppliedCoupon(parsedCoupon)
+            }
+        } catch { }
+    }, [])
 
+    useEffect(() => {
+        try {
+            localStorage.setItem('appliedCoupon', JSON.stringify(appliedCoupon))
+        } catch { }
+    }, [appliedCoupon])
 
-    const updateCartItem = (id: string, quantity: number) => {
-        if (quantity === 0) {
-            setCartItems((prev) => prev.filter((item) => item.id !== id))
-        } else {
-            setCartItems((prev) => prev.map((item) => (item.id === id ? { ...item, quantity } : item)))
-        }
+    const handleIncrease = (id: number) => {
+        dispatch(increaseQuantity(id))
     }
 
-    const removeItem = (id: string) => {
-        setCartItems((prev) => prev.filter((item) => item.id !== id))
+    const handleDecrease = (id: number) => {
+        dispatch(decreaseQuantity(id))
+    }
+
+    const handleRemove = (id: number) => {
+        dispatch(removeFromCart(id))
     }
 
     const getTotalPrice = () => {
-        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+        return totalPrice
     }
 
     const getTotalItems = () => {
-        return cartItems.reduce((total, item) => total + item.quantity, 0)
+        return totalItems
     }
 
     const getShippingFee = () => {
@@ -143,7 +119,13 @@ export default function CartPage() {
                     {/* Cart Items */}
                     <div className="lg:col-span-2 space-y-4">
                         {cartItems.map((item) => (
-                            <CartItem item={item} />
+                            <CartItem
+                                key={item.id}
+                                item={item}
+                                onIncrease={handleIncrease}
+                                onDecrease={handleDecrease}
+                                onRemove={handleRemove}
+                            />
                         ))}
                     </div>
 
