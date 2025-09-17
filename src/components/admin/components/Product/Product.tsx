@@ -6,6 +6,14 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Plus, Search, Edit, Trash2, Eye } from "lucide-react"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
 // Mock data
 const mockProducts = [
@@ -68,8 +76,6 @@ export default function ProductManager() {
       product.category.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
-
-
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -103,84 +109,85 @@ export default function ProductManager() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th className="text-left py-3 px-4 text-gray-900 dark:text-white">Sản phẩm</th>
-                  <th className="text-left py-3 px-4 text-gray-900 dark:text-white">Danh mục</th>
-                  <th className="text-left py-3 px-4 text-gray-900 dark:text-white">Giá</th>
-                  <th className="text-left py-3 px-4 text-gray-900 dark:text-white">Tồn kho</th>
-                  <th className="text-left py-3 px-4 text-gray-900 dark:text-white">Trạng thái</th>
-                  <th className="text-left py-3 px-4 text-gray-900 dark:text-white">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredProducts.map((product) => (
-                  <tr
-                    key={product.id}
-                    className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
-                  >
-                    <td className="py-3 px-4">
-                      <div className="flex items-center space-x-3">
-                        <img
-                          src={product.image || "/placeholder.svg"}
-                          alt={product.name}
-                          className="w-12 h-12 rounded-lg object-cover"
-                        />
-                        <div>
-                          <p className="font-medium text-gray-900 dark:text-white">{product.name}</p>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">ID: {product.id}</p>
-                        </div>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Sản phẩm</TableHead>
+                <TableHead>Danh mục</TableHead>
+                <TableHead>Giá</TableHead>
+                <TableHead>Tồn kho</TableHead>
+                <TableHead>Trạng thái</TableHead>
+                <TableHead>Thao tác</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filteredProducts.map((product) => (
+                <TableRow key={product.id}>
+                  <TableCell>
+                    <div className="flex items-center space-x-3">
+                      <img
+                        src={product.image || "/placeholder.svg"}
+                        alt={product.name}
+                        className="w-12 h-12 rounded-lg object-cover"
+                      />
+                      <div>
+                        <p className="font-medium text-gray-900 dark:text-white">{product.name}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">ID: {product.id}</p>
                       </div>
-                    </td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-300">{product.category}</td>
-                    <td className="py-3 px-4 font-medium text-gray-900 dark:text-white">
-                      ₫{product.price.toLocaleString()}
-                    </td>
-                    <td className="py-3 px-4">
-                      <span
-                        className={
-                          product.stock === 0 ? "text-red-600 dark:text-red-400" : "text-gray-900 dark:text-white"
-                        }
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-gray-600 dark:text-gray-300">{product.category}</TableCell>
+                  <TableCell className="font-medium text-gray-900 dark:text-white">
+                    ₫{product.price.toLocaleString()}
+                  </TableCell>
+                  <TableCell>
+                    <span
+                      className={
+                        product.stock === 0 ? "text-red-600 dark:text-red-400" : "text-gray-900 dark:text-white"
+                      }
+                    >
+                      {product.stock}
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    <Badge
+                      variant={product.status === "active" ? "default" : "destructive"}
+                      className={product.status === "active" ? "bg-green-600" : "bg-red-600"}
+                    >
+                      {product.status === "active" ? "Còn hàng" : "Hết hàng"}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                       >
-                        {product.stock}
-                      </span>
-                    </td>
-                    <td className="py-3 px-4">
-                      <div className="flex items-center space-x-2">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                        >
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
-
-
     </div>
   )
 }

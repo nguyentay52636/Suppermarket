@@ -7,12 +7,12 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ShoppingCart, ShoppingBag, Trash2 } from 'lucide-react'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { clearCart, increaseQuantity, decreaseQuantity, removeFromCart } from '@/redux/slices/cartSlice'
-import CartItem from './CartItem'
+import CartItem from './components/CartItem/CartItem'
+import CartTotalPrice from './components/CartTotalPrice'
 
 interface CartProps {
     children: React.ReactNode
@@ -85,8 +85,7 @@ export default function Cart({ children }: CartProps) {
                             {items.map((item) => (
                                 <CartItem
                                     key={item.id}
-                                    id={item.id}
-                                    name={item.name}
+                                    item={item}
                                     price={item.price}
                                     image={item.image}
                                     unit={item.unit}
@@ -101,29 +100,7 @@ export default function Cart({ children }: CartProps) {
                 </div>
 
                 {items.length > 0 && (
-                    <div className="border-t pt-6 space-y-4">
-                        <div className="flex justify-between items-center">
-                            <span className="text-lg font-semibold">Tổng cộng:</span>
-                            <span className="text-xl font-bold text-orange-600">
-                                {formatPrice(totalPrice)}
-                            </span>
-                        </div>
-
-                        <div className="flex gap-2">
-                            <Button
-                                variant="outline"
-                                onClick={handleClearCart}
-                                className="flex-1"
-                            >
-                                <Trash2 className="h-4 w-4 mr-2" />
-                                Xóa tất cả
-                            </Button>
-                            <Button className="flex-1 bg-orange-500 hover:bg-orange-600">
-                                <ShoppingCart className="h-4 w-4 mr-2" />
-                                Thanh toán
-                            </Button>
-                        </div>
-                    </div>
+                    <CartTotalPrice totalPrice={totalPrice} handleClearCart={handleClearCart} />
                 )}
             </SheetContent>
         </Sheet>
