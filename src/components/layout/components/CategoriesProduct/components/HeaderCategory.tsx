@@ -9,11 +9,11 @@ export default function HeaderCategory() {
             <div className="container mx-auto px-4 py-4">
                 <div className="flex items-center gap-4">
                     <Link href="/">
-                        <Button variant="ghost" size="icon">
+                        <Button variant="ghost" size="icon" className=' text-white cursor-pointer bg-green-700 hover:bg-green-800'>
                             <ArrowLeft className="h-5 w-5" />
                         </Button>
                     </Link>
-                    <h1 className="text-xl font-bold text-green-600">Danh mục sản phẩm</h1>
+                    <h1 className="text-xl font-bold text-">Danh mục sản phẩm</h1>
                 </div>
             </div>
         </div>
