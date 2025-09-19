@@ -3,6 +3,7 @@ import "./globals.css";
 import ClientLayout from "./ClientLayout";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ReduxProvider from "@/components/ReduxProvider";
+import BackToTop from "@/components/BackToTop/BackToTop";
 
 export const metadata: Metadata = {
   title: "Supermarket",
@@ -29,6 +30,7 @@ export default function RootLayout({
 
           </ThemeProvider>
         </ReduxProvider>
+        <BackToTop />
       </body>
     </html >
   );

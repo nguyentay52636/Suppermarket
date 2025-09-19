@@ -29,9 +29,8 @@ import {
     Trash2,
 } from "lucide-react"
 import Link from "next/link"
-import { useAppSelector, useAppDispatch } from "@/lib/hooks"
-import { clearCart } from "@/lib/store"
-import { SuccessNotification } from "@/components/success-notification"
+import { useAppSelector, useAppDispatch } from "@/redux/hooks"
+import { clearCart } from "@/redux/slices/cartSlice"
 
 const steps = [
     { id: 1, name: "Giỏ hàng", completed: true },
@@ -113,7 +112,7 @@ export default function page() {
         estimatedDelivery: "",
     })
 
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    const subtotal = cartItems.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0)
     const shippingFee = deliveryMethod === "express" ? 25000 : 15000
     const discount = appliedCoupon ? 20000 : 0
     const total = subtotal + shippingFee - discount
@@ -456,7 +455,7 @@ export default function page() {
                                     <Checkbox
                                         id="sameAsBilling"
                                         checked={sameAsBilling}
-                                        onCheckedChange={setSameAsBilling}
+                                        onCheckedChange={(checked) => setSameAsBilling(checked === true)}
                                         className="text-green-600"
                                     />
                                     <Label htmlFor="sameAsBilling" className="text-gray-700 cursor-pointer">
@@ -821,9 +820,9 @@ export default function page() {
                                                     <p className="text-sm font-medium text-gray-900 truncate">{item.name}</p>
                                                     <p className="text-sm text-gray-600">SL: {item.quantity}</p>
                                                 </div>
-                                                <p className="text-sm font-medium text-gray-900">
+                                                {/* <p className="text-sm font-medium text-gray-900">
                                                     {(item.price * item.quantity).toLocaleString("vi-VN")}đ
-                                                </p>
+                                                </p> */}
                                             </div>
                                         ))}
                                     </div>
@@ -908,7 +907,7 @@ export default function page() {
                 </div>
             </div>
 
-            <SuccessNotification isOpen={showSuccess} onClose={() => setShowSuccess(false)} orderDetails={orderDetails} />
+            {/* <SuccessNotification isOpen={showSuccess} onClose={() => setShowSuccess(false)} orderDetails={orderDetails} /> */}
         </div>
     )
 }
