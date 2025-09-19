@@ -35,7 +35,7 @@ export default function DialogViewDetails({ order, onClose }: DialogViewDetailsP
             return `https://placehold.co/200x200/A27B5C/FFF?text=${encodedName}`;
         }
         if (/^https?:\/\//.test(path)) return path;
-        const apiUrl = import.meta.env.VITE_API_URL as string;
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
         const baseUrl = apiUrl.replace(/\/api\/?$/, '');
         return `${baseUrl}${path}`;
     };

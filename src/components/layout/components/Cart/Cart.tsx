@@ -79,10 +79,6 @@ export default function Cart({ children }: CartProps) {
                                 <CartItem
                                     key={item.id}
                                     item={item}
-                                    price={item.price}
-                                    image={item.image}
-                                    unit={item.unit}
-                                    quantity={item.quantity}
                                     onIncrease={handleIncrease}
                                     onDecrease={handleDecrease}
                                     onRemove={handleRemove}

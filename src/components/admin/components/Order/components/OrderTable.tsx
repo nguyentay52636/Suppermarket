@@ -48,7 +48,7 @@ export default function OrderTable({
             return `https://placehold.co/200x200/A27B5C/FFF?text=${encodedName}`;
         }
         if (/^https?:\/\//.test(path)) return path;
-        const apiUrl = import.meta.env.VITE_API_URL as string;
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
         const baseUrl = apiUrl.replace(/\/api\/?$/, '');
         return `${baseUrl}${path}`;
     };
@@ -71,26 +71,14 @@ export default function OrderTable({
             setIsUpdating(true);
             // await updateOrder(orderId, { status: newStatus });
             toast.success('Cập nhật trạng thái đơn hàng thành công!', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                duration: 3000,
             });
             if (onStatusChange) {
                 onStatusChange(orderId, newStatus);
             }
         } catch (error) {
             toast.error('Cập nhật trạng thái đơn hàng thất bại!', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                duration: 3000,
             });
             console.error('Error updating order status:', error);
         } finally {

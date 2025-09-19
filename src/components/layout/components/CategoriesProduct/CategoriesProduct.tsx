@@ -87,7 +87,7 @@ export default function CategoriesProduct() {
                         {viewMode === "grid" ? (
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                                 {filteredProducts.map((product) => (
-                                    <ProductItem key={product.id} product={product} id={product.id} name={product.name} price={product.price} unit={product.unit} image={product.image} />
+                                    <ProductItem key={product.id} product={product} id={product.id} name={product.name} price={product.price.toString()} unit="cái" image={product.image} />
                                 ))}
                             </div>
                         ) : (
