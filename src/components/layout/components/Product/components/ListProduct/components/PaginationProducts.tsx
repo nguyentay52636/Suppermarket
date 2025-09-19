@@ -63,7 +63,7 @@ export function PaginationProducts({ currentPage, totalPages, onPageChange }: Pa
       variant: (currentPage === page ? "default" : "outline") as "default" | "outline",
       onClick: () => onPageChange(page),
       className: `rounded-full w-14 h-14 p-0 text-sm ${currentPage === page
-        ? "bg-green-500 text-white hover:bg-green-500/90 cursor-pointer "
+        ? "bg-green-700 text-white hover:bg-green-800 cursor-pointer "
         : "border-primary text-primary hover:bg-primary/10"
         }`,
     };

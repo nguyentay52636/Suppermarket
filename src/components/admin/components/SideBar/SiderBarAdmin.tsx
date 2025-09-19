@@ -82,6 +82,13 @@ export function SiderBarAdmin() {
             badge: null,
         },
         {
+            name: "Quản lý nhà cung cấp",
+            href: "/admin/suppliers",
+            icon: Users,
+            current: pathname === "/admin/suppliers",
+            badge: null,
+        },
+        {
             name: "Khách hàng",
             href: "/admin/customers",
             icon: Users,
