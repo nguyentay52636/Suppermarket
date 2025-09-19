@@ -85,7 +85,7 @@ export default function OrderManager() {
 
 
     return (
-        <div className='space-y-4'>
+        <div className='space-y-4 m-4'>
             <OrderActions
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
@@ -109,7 +109,7 @@ export default function OrderManager() {
                 totalItems={filteredOrders.length}
             />
             {selectedOrder && (
-                <DialogViewDetails selectedOrderItems={selectedOrder.orderItems} setSelectedOrderItems={setSelectedOrderItems} />
+                <DialogViewDetails selectedOrderItems={selectedOrder.orderItems} setSelectedOrderItems={() => { }} />
             )}
         </div>
     );

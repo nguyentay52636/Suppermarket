@@ -27,10 +27,10 @@ export default function OrderActions({
 }: OrderActionsProps) {
     return (
         <>
-            <div className='mb-6'>
-                <div className='flex justify-between items-center mb-2'>
+            <div className='mb-6 mx-4'>
+                <div className='flex justify-between items-center mb-2 mx-10'>
                     <div>
-                        <h1 className='text-3xl font-bold text-gray-800'>Đơn Hàng</h1>
+                        <h1 className='text-3xl font-bold text-gray-800'> Quản lý Đơn Hàng</h1>
                         <nav className='text-sm text-gray-500'>
                             <span>Trang chủ</span> / <span>Đơn hàng</span>
                         </nav>
@@ -56,7 +56,7 @@ export default function OrderActions({
                     </Select>
                     <Input type='text' placeholder='10 Apr - 20 Apr' className='w-[180px]' disabled />
                     <Button
-                        className='bg-[#3F4E4F] hover:bg-gray-600 text-white flex items-center'
+                        className=' cursor-pointer   bg-green-700 hover:bg-green-800 !text-white flex items-center'
                         onClick={exportBill}
                     >
                         <svg
