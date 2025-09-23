@@ -12,6 +12,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { SupplierInfoCard } from "./SupplierInfoCard"
+import { ReceiptInfoCard } from "./ReceiptInfoCard"
+import { ProductSelector } from "./ProductSelector"
+import { SelectedProductsTable } from "./SelectedProductsTable"
+import { FormFooterActions } from "./FormFooterActions"
+import { mockSupplierProducts } from "./mockSupplierProducts"
+import type { SupplierProduct } from "./import-goods.types"
 import {
     Plus,
     Minus,
@@ -26,7 +33,7 @@ import {
     Clock,
     MapPin,
 } from "lucide-react"
-import type { NhaCungCap, ChiTietPhieuNhap, SanPham } from "@/apis/types"
+import type { NhaCungCap, ChiTietPhieuNhap } from "@/apis/types"
 import Image from "next/image"
 
 interface ImportGoodsFormProps {
@@ -39,68 +46,8 @@ interface ImportGoodsFormProps {
     onCancel: () => void
 }
 
-const mockSupplierProducts: SanPham[] = [
-    {
-        maSanPham: "SP001",
-        tenSanPham: "Cà chua cherry",
-        donVi: "kg",
-        giaBan: 25000,
-        soLuongTon: 150,
-        trangThai: "active",
-        hinhAnh: "/cherry-tomatoes.jpg",
-        moTa: "Cà chua cherry tươi ngon, giàu vitamin C",
-        xuatXu: "Đà Lạt",
-        hanSuDung: "2024-12-31",
-    },
-    {
-        maSanPham: "SP002",
-        tenSanPham: "Rau cải xanh",
-        donVi: "kg",
-        giaBan: 15000,
-        soLuongTon: 200,
-        trangThai: "active",
-        hinhAnh: "/fresh-green-vegetables.jpg",
-        moTa: "Rau cải xanh tươi, không thuốc trừ sâu",
-        xuatXu: "Lâm Đồng",
-        hanSuDung: "2024-12-25",
-    },
-    {
-        maSanPham: "SP003",
-        tenSanPham: "Củ cà rót",
-        donVi: "kg",
-        giaBan: 18000,
-        soLuongTon: 100,
-        trangThai: "active",
-        hinhAnh: "/fresh-cucumber.png",
-        moTa: "Củ cà rót tươi giòn, thích hợp làm salad",
-        xuatXu: "Tiền Giang",
-        hanSuDung: "2024-12-28",
-    },
-    {
-        maSanPham: "SP004",
-        tenSanPham: "Thịt ba chỉ heo",
-        donVi: "kg",
-        giaBan: 180000,
-        soLuongTon: 50,
-        trangThai: "active",
-        hinhAnh: "/pork-belly-meat.jpg",
-        moTa: "Thịt ba chỉ heo tươi, đảm bảo vệ sinh an toàn thực phẩm",
-        xuatXu: "Đồng Nai",
-        hanSuDung: "2024-12-20",
-    },
-    {
-        maSanPham: "SP005",
-        tenSanPham: "Cá thu tươi",
-        donVi: "kg",
-        giaBan: 120000,
-        soLuongTon: 30,
-        trangThai: "active",
-        hinhAnh: "/fresh-mackerel-fish.jpg",
-        moTa: "Cá thu tươi ngon, giàu omega-3",
-        xuatXu: "Vũng Tàu",
-        hanSuDung: "2024-12-18",
-    },
-]
+// Local type for supplier product items used in this form
+// removed inline SupplierProduct and mock data (moved to files)
 
 export function ImportGoodsForm({ supplier, onSubmit, onCancel }: ImportGoodsFormProps) {
     const [ngayNhap, setNgayNhap] = useState(new Date().toISOString().split("T")[0])
@@ -122,8 +69,8 @@ export function ImportGoodsForm({ supplier, onSubmit, onCancel }: ImportGoodsFor
             maSanPham: product.maSanPham,
             maPhieuNhap: "", // Will be set when creating the import receipt
             soLuong: 1,
-            donGia: product.giaBan,
-            thanhTien: product.giaBan,
+            donGia: product.giaNhap ?? product.giaBan,
+            thanhTien: product.giaNhap ?? product.giaBan,
         }
 
         setSelectedProducts([...selectedProducts, newItem])
@@ -385,7 +332,7 @@ export function ImportGoodsForm({ supplier, onSubmit, onCancel }: ImportGoodsFor
                                                                 <div className="bg-green-50 p-3 rounded-lg border border-green-200">
                                                                     <span className="text-green-600 text-sm font-medium">Giá nhập</span>
                                                                     <p className="font-bold text-green-800 text-lg">
-                                                                        {product.giaNhap.toLocaleString("vi-VN")}đ
+                                                                        {(product.giaNhap ?? product.giaBan).toLocaleString("vi-VN")}đ
                                                                     </p>
                                                                 </div>
                                                                 <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">

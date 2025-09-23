@@ -14,14 +14,14 @@ export interface DialogAddSupplierProps {
 export default function DialogAddSupplier({ isAddDialogOpen, setIsAddDialogOpen, handleAddSupplier }: DialogEditSupplierProps) {
     return (
         <>
-            <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+            <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen} >
                 <DialogTrigger asChild>
                     <Button className="bg-green-700 hover:bg-green-800">
                         <Plus className="h-4 w-4 mr-2" />
                         Thêm nhà cung cấp
                     </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="max-w-6xl! max-h-[80vh] overflow-y-auto ">
                     <DialogHeader>
                         <DialogTitle>Thêm nhà cung cấp mới</DialogTitle>
                     </DialogHeader>

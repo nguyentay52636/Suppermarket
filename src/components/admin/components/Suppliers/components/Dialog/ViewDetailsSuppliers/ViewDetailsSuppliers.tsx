@@ -23,7 +23,7 @@ export default function ViewDetailsSuppliers({ mockProducts, isDetailDialogOpen,
     return (
         <>
             <Dialog open={isDetailDialogOpen} onOpenChange={setIsDetailDialogOpen}>
-                <DialogContent className="max-w-7xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="max-w-7xl! max-h-[80vh] overflow-y-auto ">
                     <DialogHeader>
                         <DialogTitle className="flex items-center gap-3 text-2xl">
                             <div className="p-2 bg-green-100 rounded-full">
@@ -140,7 +140,7 @@ export default function ViewDetailsSuppliers({ mockProducts, isDetailDialogOpen,
                                                         <span className="text-orange-600">Tổng giá trị tồn kho:</span>
                                                         <Badge variant="outline" className="bg-blue-50 text-blue-800 border-blue-300">
                                                             {mockProducts
-                                                                .reduce((sum, p) => sum + p.giaNhap * p.soLuongTon, 0)
+                                                                .reduce((sum, p) => sum + (p.giaNhap ?? p.giaBan) * p.soLuongTon, 0)
                                                                 .toLocaleString("vi-VN")}
                                                             đ
                                                         </Badge>
@@ -209,7 +209,7 @@ export default function ViewDetailsSuppliers({ mockProducts, isDetailDialogOpen,
                                                         </TableCell>
                                                         <TableCell>
                                                             <div className="font-bold text-green-700 text-lg">
-                                                                {product.giaNhap.toLocaleString("vi-VN")}đ
+                                                                {(product.giaNhap ?? product.giaBan).toLocaleString("vi-VN")}đ
                                                             </div>
                                                         </TableCell>
                                                         <TableCell>
@@ -217,7 +217,7 @@ export default function ViewDetailsSuppliers({ mockProducts, isDetailDialogOpen,
                                                         </TableCell>
                                                         <TableCell>
                                                             <div className="font-bold text-purple-700 text-lg">
-                                                                {(product.giaNhap * product.soLuongTon).toLocaleString("vi-VN")}đ
+                                                                {(((product.giaNhap ?? product.giaBan)) * product.soLuongTon).toLocaleString("vi-VN")}đ
                                                             </div>
                                                         </TableCell>
                                                         <TableCell>
@@ -260,7 +260,7 @@ export default function ViewDetailsSuppliers({ mockProducts, isDetailDialogOpen,
                                                 <CardContent className="p-4 text-center">
                                                     <div className="text-2xl font-bold text-purple-800">
                                                         {mockProducts
-                                                            .reduce((sum, p) => sum + p.giaNhap * p.soLuongTon, 0)
+                                                            .reduce((sum, p) => sum + ((p.giaNhap ?? p.giaBan) * p.soLuongTon), 0)
                                                             .toLocaleString("vi-VN")}
                                                         đ
                                                     </div>

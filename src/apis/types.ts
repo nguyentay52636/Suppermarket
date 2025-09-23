@@ -52,6 +52,8 @@ export interface PhieuNhap  {
     maLoai: string;
     moTa: string;
     giaBan: number;
+    // Optional nhập price for supplier/inventory contexts
+    giaNhap?: number;
     hinhAnh: string;
     xuatXu: string;
     hsd: string; 

@@ -39,7 +39,7 @@ export function SupplierForm({ supplier, onSubmit, onCancel }: SupplierFormProps
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 pt-4 rounded-lg">
             {/* Thông tin cơ bản */}
             <Card className="border-l-4 border-l-blue-500">
                 <CardHeader className="bg-blue-50">
