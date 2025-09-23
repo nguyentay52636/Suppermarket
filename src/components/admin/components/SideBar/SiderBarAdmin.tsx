@@ -49,7 +49,7 @@ export function SiderBarAdmin() {
             name: "Tổng quan",
             href: "/admin",
             icon: BarChart3,
-            current: pathname === "/admin",
+            current: pathname === "/admin/",
             badge: null,
         },
         {

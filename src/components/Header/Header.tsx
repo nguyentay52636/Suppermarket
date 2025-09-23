@@ -25,7 +25,7 @@ export default function Header() {
         { href: "/news", label: "Tin tức", icon: Newspaper, active: false },
         { href: "/about", label: "Giới thiệu", icon: Info, active: false },
         { href: "/contact", label: "Liên hệ", icon: MessageCircle, active: false },
-        { href: "/admin", label: "Quản lý ", icon: User, active: false },
+        { href: "/admin/revenue", label: "Quản lý ", icon: User, active: false },
     ]
 
     return (

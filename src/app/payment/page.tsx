@@ -31,6 +31,7 @@ import {
 import Link from "next/link"
 import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import { clearCart } from "@/redux/slices/cartSlice"
+import BtnStyle from "@/lib/ButtonStyle/BtnStyle"
 
 const steps = [
     { id: 1, name: "Giỏ hàng", completed: true },
@@ -886,12 +887,10 @@ export default function page() {
                                         <span className="text-green-600">{total.toLocaleString("vi-VN")}đ</span>
                                     </div>
 
-                                    <Button
-                                        onClick={handleCheckout}
-                                        className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-medium py-3"
-                                    >
+
+                                    <BtnStyle successText="Đã đặt hàng" onComplete={handleCheckout}>
                                         Đặt hàng ngay
-                                    </Button>
+                                    </BtnStyle>
 
                                     <p className="text-xs text-gray-500 text-center mt-3">
                                         Bằng việc đặt hàng, bạn đồng ý với{" "}

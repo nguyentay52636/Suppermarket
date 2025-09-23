@@ -38,7 +38,7 @@ export const products = [
         price: 380000,
         originalPrice: 420000,
         image: "/vegetables.png",
-        category: "hai-san-tuoi",
+    category: "hai-san-tuoi",
         rating: 4.7,
         sold: 65,
         discount: 10,
