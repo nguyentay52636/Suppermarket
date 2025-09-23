@@ -29,6 +29,8 @@ export interface PhieuNhap  {
     soDienThoai: string,
     email: string,
     trangThai: "active" | "inactive",
+    ngayTao: string,
+    moTa: string,
   };
   
   export interface ChiTietPhieuNhap  {
