@@ -11,7 +11,7 @@ export interface DialogAddSupplierProps {
     setIsAddDialogOpen: (open: boolean) => void
     handleAddSupplier: (supplier: NhaCungCap) => void
 }
-export default function DialogAddSupplier({ isAddDialogOpen, setIsAddDialogOpen, handleAddSupplier }: DialogEditSupplierProps) {
+export default function DialogAddSupplier({ isAddDialogOpen, setIsAddDialogOpen, handleAddSupplier  }: DialogAddSupplierProps) {
     return (
         <>
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen} >
