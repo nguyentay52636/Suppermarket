@@ -15,6 +15,8 @@ import {
     X,
     Home,
     ShoppingCart,
+    Percent,
+    Gift,
 
 } from "lucide-react"
 import HeaderAppSider from "./components/HeaderAppSider"
@@ -84,8 +86,15 @@ export function SiderBarAdmin() {
         {
             name: "Quản lý nhà cung cấp",
             href: "/admin/suppliers",
-            icon: Users,
+            icon: Building2,
             current: pathname === "/admin/suppliers",
+            badge: null,
+        },
+        {
+            name: "Quản lý khuyến mãi",
+            href: "/admin/promotions",
+            icon: Gift,
+            current: pathname === "/admin/promotions",
             badge: null,
         },
         {
