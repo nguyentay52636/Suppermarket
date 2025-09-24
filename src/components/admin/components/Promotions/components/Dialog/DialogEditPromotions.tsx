@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormPromotions } from '../Form/FormPromotions'
+import { FormPromotions } from '../FormPromotions/FormPromotions'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { KhuyenMai } from '../../ManagerPromotionsContent'
 interface DialogEditPromotionsProps {
@@ -13,7 +13,7 @@ export default function DialogEditPromotions({ isFormOpen, setIsFormOpen, select
     return (
         <>
             <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="max-w-6xl! max-h-[90vh]! overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle>{selectedPromotion ? "Chỉnh sửa khuyến mãi" : "Thêm khuyến mãi mới"}</DialogTitle>
                     </DialogHeader>
