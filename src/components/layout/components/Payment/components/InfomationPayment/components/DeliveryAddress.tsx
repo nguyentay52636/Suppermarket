@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { RadioGroup } from '@/components/ui/radio-group';
 import { MapPin, Plus } from 'lucide-react';
 import { Address, NewAddressForm } from '../types';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import AddressItem from './AddressItem';
 import AddressForm from './AddressForm';
 
@@ -70,15 +71,25 @@ export default function DeliveryAddress({
                     </div>
                 </RadioGroup>
 
-                {showNewAddress && (
-                    <AddressForm
-                        formData={newAddressForm}
-                        onFormChange={onNewAddressChange}
-                        onSave={onSaveNewAddress}
-                        onCancel={onCancelNewAddress}
-                        isBilling={false}
-                    />
-                )}
+                <Dialog
+                    open={showNewAddress}
+                    onOpenChange={(open) => {
+                        if (!open) onCancelNewAddress();
+                    }}
+                >
+                    <DialogContent className=" max-h-[80vh]! overflow-y-auto max-w-4xl!">
+                        <DialogHeader>
+                            <DialogTitle>Thêm địa chỉ giao hàng mới</DialogTitle>
+                        </DialogHeader>
+                        <AddressForm
+                            formData={newAddressForm}
+                            onFormChange={onNewAddressChange}
+                            onSave={onSaveNewAddress}
+                            onCancel={onCancelNewAddress}
+                            isBilling={false}
+                        />
+                    </DialogContent>
+                </Dialog>
             </CardContent>
         </Card>
     );
