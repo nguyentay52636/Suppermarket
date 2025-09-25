@@ -55,48 +55,59 @@ export const paymentMethods: PaymentMethodType[] = [
     type: 'cod',
     label: 'Thanh toán tiền mặt (COD)',
     description: 'Thanh toán bằng tiền mặt khi nhận hàng',
-    icon: 'wallet',
-    iconColor: 'green',
     category: 'offline',
   },
   {
     type: 'card',
     label: 'Thẻ tín dụng/ghi nợ',
     description: 'Visa, Mastercard, JCB, American Express',
-    icon: 'credit-card',
-    iconColor: 'blue',
     category: 'online',
   },
   {
     type: 'momo',
     label: 'Ví MoMo',
     description: 'Thanh toán qua ví điện tử MoMo',
-    icon: 'momo',
-    iconColor: 'pink',
     category: 'online',
+    accountInfo: {
+      bankId: '970415', // MoMo bank code
+      bankAccount: '0123456789',
+      phoneNumber: '0123456789',
+    },
+    logoUrl: 'https://img.vietqr.io/image/970415-0123456789-compact.png',
   },
   {
     type: 'zalopay',
     label: 'ZaloPay',
     description: 'Thanh toán qua ví điện tử ZaloPay',
-    icon: 'zalopay',
-    iconColor: 'blue',
     category: 'online',
+    accountInfo: {
+      bankId: '970458', // ZaloPay bank code
+      bankAccount: '0987654321',
+    },
+    logoUrl: 'https://img.vietqr.io/image/970458-0987654321-compact.png',
   },
   {
     type: 'vnpay',
     label: 'VNPay',
     description: 'Chuyển khoản qua cổng VNPay',
-    icon: 'vnpay',
-    iconColor: 'green',
     category: 'online',
+    vnpayInfo: {
+      merchantId: '12345678',
+      merchantName: 'Siêu thị ABC',
+      store: 'Store 001',
+      terminal: 'Terminal 001',
+    },
+    logoUrl: 'https://img.vietqr.io/image/970436-1234567890-compact.png',
   },
   {
     type: 'banking',
     label: 'Internet Banking',
     description: 'Chuyển khoản qua ngân hàng trực tuyến',
-    icon: 'banking',
-    iconColor: 'green',
     category: 'online',
+    accountInfo: {
+      bankId: '970436', // Vietcombank
+      bankAccount: '1234567890',
+    },
+    logoUrl: 'https://img.vietqr.io/image/970436-1234567890-compact.png',
   },
 ];

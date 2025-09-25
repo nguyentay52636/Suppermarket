@@ -24,27 +24,25 @@ interface OrderSumaryProps {
     discount: number
     total: number
 }
-export default function OrderSumary({    cartItems, couponCode, setCouponCode, appliedCoupon, applyCoupon, onCheckout, subtotal, shippingFee, discount, total }: OrderSumaryProps) {
+export default function OrderSumary({ cartItems, couponCode, setCouponCode, appliedCoupon, applyCoupon, onCheckout, subtotal, shippingFee, discount, total }: OrderSumaryProps) {
     return (
         <div className="lg:col-span-1">
             <div className="sticky top-4">
                 <Card className="shadow-lg border-green-100">
-                    <CardHeader className="bg-green-600 text-white rounded-t-lg">
+                    <CardHeader className="bg-green-700 text-white rounded-t-lg">
                         <CardTitle className="flex items-center justify-between">
-                            <div className="flex items-center">
+                            <div className="flex justify-center items-center p-4">
                                 <ShoppingBag className="h-5 w-5 mr-2" />
                                 Đơn hàng của bạn
                             </div>
-                            <Link
-                                href="/"
-                                className="text-white hover:text-green-100 text-sm flex items-center transition-colors"
-                            >
-                                <Plus className="h-4 w-4 mr-1" />
-                                Thêm sản phẩm
-                            </Link>
+
+
+
                         </CardTitle>
                     </CardHeader>
+
                     <CardContent className="p-6">
+
                         <div className="space-y-4 mb-6">
                             <CartItems cartItems={cartItems} />
                         </div>

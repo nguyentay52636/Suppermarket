@@ -22,14 +22,23 @@ export interface DeliveryMethod {
   fee: number;
   icon: string;
 }
-
 export interface PaymentMethod {
-  type: 'cod' | 'card' | 'momo' | 'zalopay' | 'vnpay' | 'banking';
+  type: string;
   label: string;
   description: string;
-  icon: string;
-  iconColor: string;
   category: 'offline' | 'online';
+  accountInfo?: {
+    bankId: string;
+    bankAccount: string;
+    phoneNumber?: string; // For MoMo (last 3 digits)
+  };
+  vnpayInfo?: {
+    merchantId: string;
+    merchantName: string;
+    store: string;
+    terminal: string;
+  };
+  logoUrl?: string;
 }
 
 export interface NewAddressForm {
@@ -50,3 +59,4 @@ export interface NewBillingAddressForm {
   city: string;
   taxCode: string;
 }
+
